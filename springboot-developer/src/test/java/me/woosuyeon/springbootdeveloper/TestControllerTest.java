@@ -44,7 +44,6 @@ class TestControllerTest {
         // given
         final String url = "/test";
         Member savedMember = memberRepository.save(new Member(6L, "홍길동"));
-        // 테스트 결과: 제대로 추가 되지 않음
 
         // when
         final ResultActions result = mockMvc.perform(get(url)
