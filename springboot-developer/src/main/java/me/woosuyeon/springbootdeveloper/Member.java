@@ -18,4 +18,8 @@ public class Member {   // 'member' 테이블에 접근하는데 사용할 객�
 
     @Column(name = "name", updatable = false)
     private String name;
+
+    public void changeName(String name) {
+        this.name = name;
+    }
 }
