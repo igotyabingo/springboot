@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">1</div>
+<div class="counter">2</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.583s</div>
+<div class="counter">1.268s</div>
 <p>duration</p>
 </div>
 </td>
@@ -81,7 +81,13 @@
 <tr>
 <td class="success">addArticle: 블로그 글 추가에 성공한다.</td>
 <td class="success">addArticle()</td>
-<td class="success">0.583s</td>
+<td class="success">0.155s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">findAllArticles: 블로그 글 목록 조회에 성공한다.</td>
+<td class="success">findAllArticles()</td>
+<td class="success">1.113s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -89,8 +95,8 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>16:54:10.174 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [me.woosuyeon.springbootdeveloper.controller.BlogApiControllerTest]: BlogApiControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-16:54:10.246 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration me.woosuyeon.springbootdeveloper.SpringBootDeveloperApplication for test class me.woosuyeon.springbootdeveloper.controller.BlogApiControllerTest
+<pre>11:17:26.873 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [me.woosuyeon.springbootdeveloper.controller.BlogApiControllerTest]: BlogApiControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+11:17:27.008 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration me.woosuyeon.springbootdeveloper.SpringBootDeveloperApplication for test class me.woosuyeon.springbootdeveloper.controller.BlogApiControllerTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -100,18 +106,18 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.0)
 
-2025-02-07T16:54:10.470+09:00  INFO 1829 --- [    Test worker] m.w.s.controller.BlogApiControllerTest   : Starting BlogApiControllerTest using Java 17.0.6 with PID 1829 (started by suyeonwoo in /Users/suyeonwoo/springboot/blog-project)
-2025-02-07T16:54:10.472+09:00  INFO 1829 --- [    Test worker] m.w.s.controller.BlogApiControllerTest   : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2025-02-07T16:54:10.804+09:00  INFO 1829 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-02-07T16:54:10.833+09:00  INFO 1829 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 25 ms. Found 1 JPA repository interface.
-2025-02-07T16:54:11.050+09:00  INFO 1829 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-02-07T16:54:11.152+09:00  INFO 1829 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
-2025-02-07T16:54:11.153+09:00  INFO 1829 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-02-07T16:54:11.180+09:00  INFO 1829 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-02-07T16:54:11.212+09:00  INFO 1829 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
-2025-02-07T16:54:11.233+09:00  INFO 1829 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-02-07T16:54:11.354+09:00  INFO 1829 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-02-07T16:54:11.796+09:00  INFO 1829 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-10T11:17:27.520+09:00  INFO 2739 --- [    Test worker] m.w.s.controller.BlogApiControllerTest   : Starting BlogApiControllerTest using Java 17.0.6 with PID 2739 (started by suyeonwoo in /Users/suyeonwoo/springboot/blog-project)
+2025-02-10T11:17:27.521+09:00  INFO 2739 --- [    Test worker] m.w.s.controller.BlogApiControllerTest   : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2025-02-10T11:17:28.026+09:00  INFO 2739 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-10T11:17:28.061+09:00  INFO 2739 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 29 ms. Found 1 JPA repository interface.
+2025-02-10T11:17:28.405+09:00  INFO 2739 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-10T11:17:28.579+09:00  INFO 2739 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-02-10T11:17:28.581+09:00  INFO 2739 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-10T11:17:28.661+09:00  INFO 2739 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-10T11:17:28.775+09:00  INFO 2739 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
+2025-02-10T11:17:28.822+09:00  INFO 2739 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-10T11:17:29.102+09:00  INFO 2739 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-10T11:17:29.794+09:00  INFO 2739 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 Hibernate: 
     drop table if exists article cascade 
 Hibernate: 
@@ -121,16 +127,16 @@ Hibernate:
         title varchar(255) not null,
         primary key (id)
     )
-2025-02-07T16:54:11.813+09:00  INFO 1829 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-02-07T16:54:12.016+09:00  WARN 1829 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-02-07T16:54:12.179+09:00  INFO 1829 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
-2025-02-07T16:54:12.212+09:00  INFO 1829 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2025-02-07T16:54:12.213+09:00  INFO 1829 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2025-02-07T16:54:12.214+09:00  INFO 1829 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
-2025-02-07T16:54:12.232+09:00  INFO 1829 --- [    Test worker] m.w.s.controller.BlogApiControllerTest   : Started BlogApiControllerTest in 1.908 seconds (process running for 2.596)
-2025-02-07T16:54:12.607+09:00  INFO 1829 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2025-02-07T16:54:12.607+09:00  INFO 1829 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2025-02-07T16:54:12.608+09:00  INFO 1829 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2025-02-10T11:17:29.822+09:00  INFO 2739 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-10T11:17:30.237+09:00  WARN 2739 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-10T11:17:30.662+09:00  INFO 2739 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-02-10T11:17:30.742+09:00  INFO 2739 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-02-10T11:17:30.742+09:00  INFO 2739 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-02-10T11:17:30.746+09:00  INFO 2739 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2025-02-10T11:17:30.794+09:00  INFO 2739 --- [    Test worker] m.w.s.controller.BlogApiControllerTest   : Started BlogApiControllerTest in 3.609 seconds (process running for 5.313)
+2025-02-10T11:17:31.493+09:00  INFO 2739 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-02-10T11:17:31.494+09:00  INFO 2739 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-02-10T11:17:31.495+09:00  INFO 2739 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
 Hibernate: 
     select
         a1_0.id,
@@ -138,6 +144,54 @@ Hibernate:
         a1_0.title 
     from
         article a1_0
+Hibernate: 
+    delete 
+    from
+        article 
+    where
+        id=?
+Hibernate: 
+    delete 
+    from
+        article 
+    where
+        id=?
+Hibernate: 
+    delete 
+    from
+        article 
+    where
+        id=?
+Hibernate: 
+    insert 
+    into
+        article
+        (content, title, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    select
+        a1_0.id,
+        a1_0.content,
+        a1_0.title 
+    from
+        article a1_0
+2025-02-10T11:17:31.934+09:00  INFO 2739 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-02-10T11:17:31.934+09:00  INFO 2739 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-02-10T11:17:31.935+09:00  INFO 2739 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+Hibernate: 
+    select
+        a1_0.id,
+        a1_0.content,
+        a1_0.title 
+    from
+        article a1_0
+Hibernate: 
+    delete 
+    from
+        article 
+    where
+        id=?
 Hibernate: 
     insert 
     into
@@ -163,7 +217,7 @@ Hibernate:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.5.1</a> at 2025. 2. 7. 오후 4:54:12</p>
+<a href="http://www.gradle.org">Gradle 7.5.1</a> at 2025. 2. 10. 오전 11:17:32</p>
 </div>
 </div>
 </body>
