@@ -18,5 +18,12 @@ public class BlogService {
     }
 
     // DB에 저장된 모든 글 목록을 가져오는 메소드이다.
-    public List<Article> findAll() { return blogRepository.findAll(); }
+    public List<Article> findAll() {
+        return blogRepository.findAll();
+    }
+
+    public Article findById(long id) {
+        return blogRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("not found " + id));
+    }
+
 }
