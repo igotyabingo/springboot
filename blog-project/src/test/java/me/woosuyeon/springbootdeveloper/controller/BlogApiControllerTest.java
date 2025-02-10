@@ -3,6 +3,7 @@ package me.woosuyeon.springbootdeveloper.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.woosuyeon.springbootdeveloper.domain.Article;
 import me.woosuyeon.springbootdeveloper.dto.AddArticleRequest;
+import me.woosuyeon.springbootdeveloper.dto.UpdateArticleRequest;
 import me.woosuyeon.springbootdeveloper.repository.BlogRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -21,6 +22,8 @@ import java.util.List;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -128,5 +131,32 @@ class BlogApiControllerTest {
         // then
         List<Article> articles = blogRepository.findAll();
         assertThat(articles).isEmpty();
+    }
+
+    @DisplayName("updateArticle: 블로그 글 수정에 성공한다.")
+    @Test
+    public void updateArticle() throws Exception {
+        // given: 블로그 글을 저장한다.
+        final String url = "/api/articles/{id}";
+        final String title = "title";
+        final String content = "content";
+        Article savedArticle = blogRepository.save(Article.builder().title(title).content(content).build());
+
+        final String newTitle = "새 제목";
+        final String newContent = "새 내용";
+        final UpdateArticleRequest userRequest = new UpdateArticleRequest(newTitle, newContent);
+
+        final String requestBody = objectMapper.writeValueAsString(userRequest);
+
+        // when: 블로그 글을 수정한다.
+        final ResultActions resultActions = mockMvc.perform(put(url, savedArticle.getId()).contentType(MediaType.APPLICATION_JSON_VALUE).content(requestBody));
+
+        // then
+        resultActions.andExpect(status().isOk());
+        Article article = blogRepository.findById(savedArticle.getId()).get();
+
+        assertThat(article.getTitle()).isEqualTo(newTitle);
+        assertThat(article.getContent()).isEqualTo(newContent);
+
     }
 }
