@@ -50,7 +50,7 @@ if (createButton) {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                title: document.getElementById('title').value,
+                title: document.getElementById('title').value,  
                 content: document.getElementById('content').value
             })
         })
