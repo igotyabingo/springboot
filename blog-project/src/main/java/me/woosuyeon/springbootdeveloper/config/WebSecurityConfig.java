@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 
 import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
@@ -31,19 +32,20 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login", "/signup", "/user").permitAll()
-                .anyRequest().authenticated()
-        ).formLogin((form) ->
-                form
+        return http
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/login", "/signup", "/user").permitAll()
+                        .anyRequest().authenticated())
+                .formLogin(formLogin -> formLogin
                         .loginPage("/login")
-                        .defaultSuccessUrl("/articles", true)
-        ).logout((logout) ->
-                logout.logoutSuccessUrl("/login")
+                        .defaultSuccessUrl("/articles")
+                )
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/login")
                         .invalidateHttpSession(true)
-        ).csrf((csrf) -> csrf.disable());
-        return http.build();
-
+                )
+                .csrf(AbstractHttpConfigurer::disable)
+                .build();
     }
 
     @Bean
