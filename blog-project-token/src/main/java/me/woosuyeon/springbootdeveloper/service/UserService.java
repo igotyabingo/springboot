@@ -29,5 +29,17 @@ public class UserService {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("Unexpected user"));
     }
+    
+    public User validateUser(String email, String password) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        User user = findByEmail(email);
+        if (encoder.matches(password, user.getPassword())) {
+            return user;
+        } else {
+            throw new IllegalArgumentException("Unexpected user");
+        }
+    }
+
+
 
 }
