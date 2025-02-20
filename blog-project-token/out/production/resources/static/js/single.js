@@ -25,46 +25,13 @@ if (modifyButton) {
         let params = new URLSearchParams(location.search);
         let id = params.get('id');
 
-        body = JSON.stringify({
-           title: document.getElementById('title').value,
-           content: document.getElementById('content').value
-        });
-
-        function success() {
-            alert("수정 완료되었습니다.");
-            location.replace("/articles" + id);
-        }
-
-        function fail() {
-            alert("수정 실패했습니다.");
-            location.replace("/articles" + id);
-        }
-
-        httpRequest("PUT", "/api/articles/"+id, body, success, fail);
-    });
-}
-
-const createButton = document.getElementById('create-btn');
-
-if (createButton) {
-    createButton.addEventListener('click', event => {
-        body = JSON.stringify({
-           title: document.getElementById('title').value,
-           content: document.getElementById('content').value
-        });
-
-        function success() {
-            alert("등록 완료되었습니다.");
-            location.replace("/articles");
-        }
-
-        function fail() {
-            alert("등록 실패했습니다.");
-            location.replace("/articles");
-        }
-
-        httpRequest("POST", "/api/articles", body, success, fail);
-
+        fetch("/new-article?id="+id, {
+                method: "GET",
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("access_token"),
+                    "Content-Type": "application/json",
+                },
+            })
     });
 }
 
