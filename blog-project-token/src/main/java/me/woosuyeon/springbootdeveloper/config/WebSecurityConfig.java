@@ -30,7 +30,10 @@ public class WebSecurityConfig {
     public WebSecurityCustomizer configure() {
         return (web) -> web.ignoring()
                 .requestMatchers(toH2Console())
-                .requestMatchers(new AntPathRequestMatcher("/static/**"));
+                .requestMatchers(new AntPathRequestMatcher("/img/**"),
+                        new AntPathRequestMatcher("/js/**"),
+                        new AntPathRequestMatcher("/css/**")
+                );
     }
 
     @Bean
