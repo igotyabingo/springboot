@@ -11,13 +11,3 @@ spring:
   h2:
     console:
       enabled: true
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id: ${CLIENT_ID}
-            client-secret: ${CLIENT_PASSWORD}
-jwt:
-  issuer: jenifer7933@gmail.com
-  secret_key: study_springboot

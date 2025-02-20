@@ -32,7 +32,6 @@ public class BlogService {
     public void delete(long id) {
         Article article = blogRepository.findById(id)
                         .orElseThrow(() -> new IllegalArgumentException("not fonud "+ id));
-        authorizeArticleAuthor(article);
         blogRepository.deleteById(id);
 
     }
@@ -40,16 +39,9 @@ public class BlogService {
     @Transactional
     public Article update(long id, UpdateArticleRequest request) {
         Article article = blogRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("not found: " + id));
-        authorizeArticleAuthor(article);
         article.update(request.getTitle(), request.getContent());
         return article;
     }
 
-    private static void authorizeArticleAuthor(Article article) {
-        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-        if(!article.getAuthor().equals(userName)) {
-            throw new IllegalArgumentException("not authorized");
-        }
-    }
 
 }

@@ -16,6 +16,6 @@ public class AddArticleRequest {
 
     public Article toEntity(String author) {
         // DTO -> entity로 변환한다.
-        return Article.builder().title(title).content(content).author(author).build();
+        return Article.builder().title(title).content(content).build();
     }
 }
