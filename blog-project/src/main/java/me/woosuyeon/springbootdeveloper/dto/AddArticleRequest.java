@@ -10,11 +10,12 @@ import me.woosuyeon.springbootdeveloper.domain.Article;
 @Getter
 
 public class AddArticleRequest {
+
     private String title;
     private String content;
 
-    public Article toEntity() {
+    public Article toEntity(String author) {
         // DTO -> entity로 변환한다.
-        return Article.builder().title(title).content(content).build();
+        return Article.builder().title(title).content(content).author(author).build();
     }
 }
