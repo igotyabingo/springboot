@@ -47,7 +47,7 @@ public class UserApiController {
         User user = userService.validateUser(request.getUsername(), request.getPassword());
         String accessToken = tokenService.createAccessToken(user);
         String refreshToken = refreshTokenService.createRefreshToken(user).getRefreshToken();
-
+        CookieUtil.deleteCookie(response, "refresh_token");
         CookieUtil.addCookie(response, "refresh_token", refreshToken, (int)Duration.ofHours(10).toSeconds());
         String path = UriComponentsBuilder.fromUriString("/articles")
                 .queryParam("token", accessToken)
