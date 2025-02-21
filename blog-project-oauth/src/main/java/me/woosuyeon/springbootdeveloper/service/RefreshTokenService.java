@@ -2,7 +2,7 @@ package me.woosuyeon.springbootdeveloper.service;
 
 import lombok.RequiredArgsConstructor;
 import me.woosuyeon.springbootdeveloper.domain.RefreshToken;
-import me.woosuyeon.springbootdeveloper.config.TokenProvider;
+import me.woosuyeon.springbootdeveloper.config.jwt.TokenProvider;
 import me.woosuyeon.springbootdeveloper.repository.RefreshTokenRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;

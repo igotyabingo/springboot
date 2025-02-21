@@ -1,7 +1,7 @@
 package me.woosuyeon.springbootdeveloper.service;
 
 import lombok.RequiredArgsConstructor;
-import me.woosuyeon.springbootdeveloper.config.TokenProvider;
+import me.woosuyeon.springbootdeveloper.config.jwt.TokenProvider;
 import me.woosuyeon.springbootdeveloper.domain.User;
 import org.springframework.stereotype.Service;
 

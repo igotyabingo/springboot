@@ -1,4 +1,4 @@
-package me.woosuyeon.springbootdeveloper.config;
+package me.woosuyeon.springbootdeveloper.config.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

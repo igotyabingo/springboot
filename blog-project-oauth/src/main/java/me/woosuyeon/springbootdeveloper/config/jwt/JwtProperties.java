@@ -1,4 +1,4 @@
-package me.woosuyeon.springbootdeveloper.config;
+package me.woosuyeon.springbootdeveloper.config.jwt;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -3,7 +3,7 @@ package me.woosuyeon.springbootdeveloper.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import me.woosuyeon.springbootdeveloper.config.TokenProvider;
+import me.woosuyeon.springbootdeveloper.config.jwt.TokenProvider;
 import me.woosuyeon.springbootdeveloper.domain.User;
 import me.woosuyeon.springbootdeveloper.dto.AddUserRequest;
 import me.woosuyeon.springbootdeveloper.dto.LogInRequest;
@@ -43,7 +43,7 @@ public class UserApiController {
 
     // 로그인을 담당하는 메소드 생성:
     @PostMapping("/login")
-    public String login(LogInRequest request, HttpServletResponse response) {
+    public String login(LogInRequest request, HttpServletRequest srequest, HttpServletResponse response) {
         // 패스에 액세스 토큰을 추가하고, 리프레시 토큰을 쿠키에 담아 응답으로 전달한다.
         // 패스로 리디렉트 한다.
         User user = userService.validateUser(request.getUsername(), request.getPassword());
@@ -51,7 +51,7 @@ public class UserApiController {
         String accessToken = tokenProvider.generateToken(user, Duration.ofDays(1));
         String refreshToken = tokenProvider.generateToken(user, Duration.ofDays(14));
 
-        CookieUtil.deleteCookie(response, "refresh_token");
+        CookieUtil.deleteCookie(srequest, response, "refresh_token");
         CookieUtil.addCookie(response, "refresh_token", refreshToken, (int)Duration.ofDays(14).toSeconds());
 
         String path = UriComponentsBuilder.fromUriString("/articles")

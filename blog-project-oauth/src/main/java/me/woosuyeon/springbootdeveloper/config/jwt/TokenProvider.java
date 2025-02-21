@@ -1,4 +1,4 @@
-package me.woosuyeon.springbootdeveloper.config;
+package me.woosuyeon.springbootdeveloper.config.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Header;
