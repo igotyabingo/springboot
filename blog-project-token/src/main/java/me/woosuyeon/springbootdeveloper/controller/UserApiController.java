@@ -3,6 +3,7 @@ package me.woosuyeon.springbootdeveloper.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import me.woosuyeon.springbootdeveloper.config.TokenProvider;
 import me.woosuyeon.springbootdeveloper.domain.User;
 import me.woosuyeon.springbootdeveloper.dto.AddUserRequest;
 import me.woosuyeon.springbootdeveloper.dto.LogInRequest;
@@ -25,6 +26,7 @@ public class UserApiController {
     private final UserService userService;
     private final TokenService tokenService;
     private final RefreshTokenService refreshTokenService;
+    private final TokenProvider tokenProvider;
 
     @PostMapping("/user")
     public String signup(AddUserRequest addUserRequest) {
@@ -45,10 +47,13 @@ public class UserApiController {
         // 패스에 액세스 토큰을 추가하고, 리프레시 토큰을 쿠키에 담아 응답으로 전달한다.
         // 패스로 리디렉트 한다.
         User user = userService.validateUser(request.getUsername(), request.getPassword());
-        String accessToken = tokenService.createAccessToken(user);
-        String refreshToken = refreshTokenService.createRefreshToken(user).getRefreshToken();
+
+        String accessToken = tokenProvider.generateToken(user, Duration.ofDays(1));
+        String refreshToken = tokenProvider.generateToken(user, Duration.ofDays(14));
+
         CookieUtil.deleteCookie(response, "refresh_token");
-        CookieUtil.addCookie(response, "refresh_token", refreshToken, (int)Duration.ofHours(10).toSeconds());
+        CookieUtil.addCookie(response, "refresh_token", refreshToken, (int)Duration.ofDays(14).toSeconds());
+
         String path = UriComponentsBuilder.fromUriString("/articles")
                 .queryParam("token", accessToken)
                 .build()

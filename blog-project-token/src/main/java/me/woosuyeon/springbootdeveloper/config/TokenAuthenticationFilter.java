@@ -5,8 +5,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.antlr.v4.runtime.Token;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -22,15 +20,10 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authorizationHeader = request.getHeader(HEADER_AUTHORIZATION);
         String token = getAccessToken(authorizationHeader);
-        System.out.println(token);
         if(tokenProvider.validToken(token)) {
-            System.out.println("valid");
             Authentication authentication = tokenProvider.getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-        } else {
-            System.out.println("not valid");
         }
-
         filterChain.doFilter(request, response);
     }
 

@@ -12,8 +12,8 @@
 </div>
 
 <div class="container">
-    <button type="button" id="create-btn" th:onclick="|location.href='@{/new-article}'|" class="btn btn-primary btn-sm mb-3">글 등록</button>
-    <button type="button" onclick="location.href='/logout'" class="btn btn-secondary btn-sm mb-3">로그아웃</button>
+    <button type="button" th:onclick="|location.href='@{/new-article}'|" class="btn btn-primary btn-sm mb-3">글 등록</button>
+    <button type="button" class="btn btn-secondary btn-sm mb-3" id="logout-btn">로그아웃</button>
     <div class="row-6" th:each="item:${articles}">
         <div class="card">
             <div class="card-header" th:text="${item.id}">
@@ -21,11 +21,12 @@
             <div class="card-body">
                 <h5 class="card-title" th:text="${item.title}"></h5>
                 <p class="card-text" th:text="${item.content}"></p>
-                <a id="move-btn" class="btn btn-primary">보러가기</a>
+                <a th:href="@{/articles/{id}(id=${item.id})}" class="btn btn-primary">보러가기</a>
             </div>
         </div>
     </div>
 </div>
 <script src="/js/token.js"></script>
+<script src="/js/article.js"></script>
 </body>
 </html>

@@ -5,7 +5,9 @@ import me.woosuyeon.springbootdeveloper.config.TokenProvider;
 import me.woosuyeon.springbootdeveloper.domain.RefreshToken;
 import me.woosuyeon.springbootdeveloper.domain.User;
 import me.woosuyeon.springbootdeveloper.repository.RefreshTokenRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
 
@@ -20,7 +22,11 @@ public class RefreshTokenService {
         return refreshTokenRepository.findByRefreshToken(refreshToken)
                 .orElseThrow(() -> new IllegalArgumentException("Unexpected token"));
     }
-    public RefreshToken createRefreshToken(User user) {
-        return refreshTokenRepository.save(new RefreshToken(user.getId(), tokenProvider.generateToken(user, Duration.ofHours(10))));
+
+    @Transactional
+    public void delete() {
+        String token = SecurityContextHolder.getContext().getAuthentication().getCredentials().toString();
+        Long userId = tokenProvider.getUserId(token);
+        refreshTokenRepository.deleteByUserId(userId);
     }
 }

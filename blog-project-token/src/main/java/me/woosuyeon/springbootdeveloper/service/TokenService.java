@@ -23,8 +23,4 @@ public class TokenService {
         return tokenProvider.generateToken(user, Duration.ofHours(2));
     }
 
-    public String createAccessToken(User user) {
-        return tokenProvider.generateToken(user, Duration.ofHours(2));
-    }
-
 }

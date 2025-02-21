@@ -18,6 +18,24 @@ if (deleteButton) {
     });
 }
 
+const logoutButton = document.getElementById('logout-btn');
+
+if (logoutButton) {
+    logoutButton.addEventListener('click', event => {
+        function success() {    // 웹에 저장된 토큰 삭제
+            localStorage.removeItem('access_token')
+            deleteCookie('refresh_token')
+            location.replace('/login');
+        }
+
+        function fail() {
+            alert("로그아웃 실패했습니다.");
+        }
+
+        httpRequest("DELETE", "/api/refresh-token", null, success, fail);   // 서버에 저장된 (리프레시) 토큰 삭제
+    });
+}
+
 const modifyButton = document.getElementById('modify-btn');
 
 if (modifyButton) {
@@ -32,12 +50,12 @@ if (modifyButton) {
 
         function success() {
             alert("수정 완료되었습니다.");
-            location.replace("/articles" + id);
+            location.replace("/articles/" + id);
         }
 
         function fail() {
             alert("수정 실패했습니다.");
-            location.replace("/articles" + id);
+            location.replace("/articles/" + id);
         }
 
         httpRequest("PUT", "/api/articles/"+id, body, success, fail);
@@ -119,4 +137,8 @@ function getCookie(key) {
     });
 
     return result;
+}
+
+function deleteCookie(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }

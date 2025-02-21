@@ -26,15 +26,13 @@ public class TokenProvider {
     }
 
     public String makeToken(Date expiry, User user) {
-        Date now = new Date();
-
         return Jwts.builder()
-                .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
-                .setIssuer(jwtProperties.getIssuer())
-                .setIssuedAt(now)
-                .setExpiration(expiry)
-                .setSubject(user.getEmail())
                 .claim("id", user.getId())
+                .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
+                .setSubject(user.getEmail())
+                .setIssuer(jwtProperties.getIssuer())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(expiry)
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
                 .compact();
     }
