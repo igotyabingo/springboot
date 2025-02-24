@@ -26,4 +26,8 @@ public class RefreshTokenService {
         Long userId = tokenProvider.getUserId(token);
         refreshTokenRepository.deleteByUserId(userId);
     }
+
+    public void save(Long userId, String token) {
+        refreshTokenRepository.save(new RefreshToken(userId, token));
+    }
 }

@@ -53,6 +53,7 @@ public class UserApiController {
 
         CookieUtil.deleteCookie(response, "refresh_token");
         CookieUtil.addCookie(response, "refresh_token", refreshToken, (int)Duration.ofDays(14).toSeconds());
+        refreshTokenService.save(user.getId(), refreshToken);
 
         String path = UriComponentsBuilder.fromUriString("/articles")
                 .queryParam("token", accessToken)
